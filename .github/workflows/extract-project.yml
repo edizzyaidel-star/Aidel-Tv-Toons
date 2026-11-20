@@ -1,0 +1,47 @@
+name: Extract AIDEL TOONS Project
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'uploads/aidel-toons-studio.zip'
+
+permissions:
+  contents: write
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Extract project ZIP
+        run: |
+          mkdir -p extracted
+          python - <<'PY'
+          import zipfile
+
+          archive = "uploads/aidel-toons-studio.zip"
+          destination = "extracted"
+
+          with zipfile.ZipFile(archive) as z:
+              for item in z.infolist():
+                  name = item.filename
+                  if name.startswith("/") or ".." in name.split("/"):
+                      raise ValueError("Unsafe ZIP path detected")
+              z.extractall(destination)
+
+          print("AIDEL TOONS project extracted!")
+          PY
+
+      - name: Publish extracted files
+        run: |
+          cp -r extracted/aidel-toons-studio/. .
+          rm -rf extracted
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Extract AIDEL TOONS project" || echo "No changes"
+          git push

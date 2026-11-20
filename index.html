@@ -1,105 +1,282 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#171044">
-  <title>AIDEL TOONS Studio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#170d35">
+  <title>AIDEL TOONS | Animation Studio</title>
   <link rel="stylesheet" href="styles.css">
-  <script type="importmap">
-    {"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"}}
-  </script>
 </head>
 <body>
-  <header class="topbar">
-    <a class="brand" href="#"><span class="brand-mark">AT</span><span>AIDEL <b>TOONS</b><small>ANIMATION STUDIO</small></span></a>
-    <div class="top-actions"><span class="status-dot"></span><span id="connectionLabel">Animation engine ready</span><button id="helpBtn" class="quiet">How it works</button></div>
-  </header>
 
-  <main class="layout">
-    <section class="stage-panel panel">
-      <div class="section-heading"><div><p class="eyebrow">YOUR VIRTUAL STAGE</p><h1>Bring your characters to life.</h1></div><span class="pill">3D PREVIEW</span></div>
-      <div id="stageWrap">
-        <canvas id="stage"></canvas>
-        <div class="stage-label"><span class="live-dot"></span> AIDEL TOONS · PERFORMANCE STAGE</div>
-        <div class="stage-controls">
-          <button id="playBtn" class="round primary" title="Play animation">▶</button>
-          <button id="pauseBtn" class="round" title="Pause animation">Ⅱ</button>
-          <button id="resetBtn" class="round" title="Reset animation">↺</button>
-          <select id="sceneSelect" aria-label="Stage background">
-            <option value="concert">Concert stage</option><option value="sunset">Sunset</option><option value="mint">Mint studio</option>
-          </select>
-        </div>
-      </div>
-      <div class="character-strip">
-        <button class="character-chip active" data-character="kiko"><span class="avatar fox">K</span><span><b>Kiko</b><small>Bright · energetic</small></span></button>
-        <button class="character-chip" data-character="milo"><span class="avatar rabbit">M</span><span><b>Milo</b><small>Smooth · clever</small></span></button>
-        <button class="character-chip" data-character="teddy"><span class="avatar bear">T</span><span><b>Teddy</b><small>Warm · playful</small></span></button>
-      </div>
-      <p class="hint">Tip: select a character, assign a lyric section, then play your audio to animate the performance.</p>
-    </section>
+<header class="topbar">
+  <a class="brand" href="#">
+    <span class="brand-mark">AT</span>
+    <span>AIDEL <b>TOONS</b>
+      <small>ANIMATION STUDIO</small>
+    </span>
+  </a>
+  <div class="top-actions">
+    <span class="status-dot"></span>
+    <span id="connectionLabel">Studio Ready</span>
+    <button id="helpBtn" class="quiet">Help</button>
+  </div>
+</header>
 
-    <aside class="editor-column">
-      <section class="panel editor-panel">
-        <p class="eyebrow">01 / SONG & LYRICS</p>
-        <h2>Create a performance</h2>
-        <label class="field-label" for="songTitle">Song title</label>
-        <input id="songTitle" value="The World Is Our Playground" maxlength="80">
-        <label class="field-label" for="lyrics">Lyrics / performance script</label>
-        <textarea id="lyrics" rows="8">[KIKO]
+<main class="layout">
+
+  <section class="stage-panel panel">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">YOUR VIRTUAL STAGE</p>
+        <h1>Bring your cartoons to life.</h1>
+      </div>
+      <span class="pill">3D PREVIEW</span>
+    </div>
+
+    <div id="stageWrap">
+      <canvas id="stage"></canvas>
+      <div class="stage-label">
+        <span class="live-dot"></span>
+        AIDEL TOONS · PERFORMANCE STAGE
+      </div>
+
+      <div class="stage-controls">
+        <button id="playBtn" class="round primary">▶</button>
+        <button id="pauseBtn" class="round">Ⅱ</button>
+        <button id="resetBtn" class="round">↺</button>
+
+        <select id="sceneSelect">
+          <option value="concert">Concert Stage</option>
+          <option value="sunset">Sunset</option>
+          <option value="mint">Mint Studio</option>
+          <option value="space">Space</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="character-strip">
+      <button class="character-chip active" data-character="kiko">
+        <span class="avatar fox">K</span>
+        <span><b>Kiko</b><small>Energetic Fox</small></span>
+      </button>
+
+      <button class="character-chip" data-character="milo">
+        <span class="avatar rabbit">M</span>
+        <span><b>Milo</b><small>Playful Rabbit</small></span>
+      </button>
+
+      <button class="character-chip" data-character="teddy">
+        <span class="avatar bear">T</span>
+        <span><b>Teddy</b><small>Friendly Bear</small></span>
+      </button>
+    </div>
+
+    <p class="hint">
+      Select your character, add music and watch your cartoon perform.
+    </p>
+  </section>
+
+  <aside class="editor-column">
+
+    <section class="panel">
+      <p class="eyebrow">01 / SONG CREATION</p>
+      <h2>Create Your Song</h2>
+
+      <label class="field-label" for="songTitle">Song Title</label>
+      <input id="songTitle" value="The World Is Our Playground" maxlength="80">
+
+      <label class="field-label" for="lyrics">Lyrics / Script</label>
+      <textarea id="lyrics" rows="8" placeholder="Write your song lyrics here...">[KIKO]
 Wake up, wake up, it's a brand-new day!
 Got a million little dreams coming our way!
 
 [MILO]
-Every little step takes us somewhere new,
-Every crazy dream can become true!
+Every little step takes us somewhere new!
 
 [TEDDY]
-I like dancing, I like to sing,
-I like doing every silly thing!
+Come on everybody, let's dance and sing!
 
 [ALL]
-The world is our playground, come on let's sing it loud!
-Together we can touch the sky!</textarea>
-        <div class="row two">
-          <div><label class="field-label" for="singerSelect">Assign selected section to</label><select id="singerSelect"><option value="kiko">Kiko</option><option value="milo">Milo</option><option value="teddy">Teddy</option><option value="all">All three</option></select></div>
-          <button id="assignBtn" class="secondary align-end">Insert section tag</button>
-        </div>
-        <div class="voice-grid">
-          <div class="voice-card"><span class="voice-icon fox">K</span><span><b>Kiko</b><small>Bright cartoon pop</small></span></div>
-          <div class="voice-card"><span class="voice-icon rabbit">M</span><span><b>Milo</b><small>Smooth melodic pop</small></span></div>
-          <div class="voice-card"><span class="voice-icon bear">T</span><span><b>Teddy</b><small>Warm playful tone</small></span></div>
-        </div>
-        <p class="microcopy">These are creative voice directions. Actual sung vocals require an AI music/vocal service or your own recorded audio.</p>
-      </section>
+The world is our playground!
+</textarea>
 
-      <section class="panel">
-        <p class="eyebrow">02 / AUDIO</p><h2>Add your song</h2>
-        <label class="upload-box" for="audioFile"><span class="upload-symbol">♫</span><b>Choose an audio file</b><small>MP3, WAV, M4A or OGG</small><input id="audioFile" type="file" accept="audio/*"></label>
-        <div id="audioName" class="file-name">No audio selected yet</div>
-        <audio id="songAudio" controls></audio>
-        <div class="row">
-          <button id="generateMusicBtn" class="secondary full">✦ Request AI song generation</button>
+      <div class="row two">
+        <div>
+          <label class="field-label" for="singerSelect">Assign Singer</label>
+          <select id="singerSelect">
+            <option value="kiko">Kiko</option>
+            <option value="milo">Milo</option>
+            <option value="teddy">Teddy</option>
+            <option value="all">All Characters</option>
+          </select>
         </div>
-        <p class="microcopy">AI generation needs a connected backend workflow. Without one, upload a song made with your chosen music tool.</p>
-      </section>
+        <button id="assignBtn" class="secondary align-end">
+          Insert Singer Tag
+        </button>
+      </div>
+    </section>
 
-      <section class="panel">
-        <p class="eyebrow">03 / VIDEO</p><h2>Render your cartoon</h2>
-        <div class="row two">
-          <div><label class="field-label" for="qualitySelect">Export quality</label><select id="qualitySelect"><option value="1280">720p preview</option><option value="1920">1080p (browser support varies)</option></select></div>
-          <div><label class="field-label" for="durationSelect">Duration</label><select id="durationSelect"><option value="audio">Match audio</option><option value="30">30 seconds</option><option value="60">60 seconds</option></select></div>
+    <section class="panel">
+      <p class="eyebrow">02 / CHARACTER CREATOR</p>
+      <h2>Create Your Character</h2>
+
+      <label class="field-label" for="customName">Character Name</label>
+      <input id="customName" placeholder="Enter character name" maxlength="18">
+
+      <div class="row two">
+        <div>
+          <label class="field-label" for="customType">Character Type</label>
+          <select id="customType">
+            <option value="bear">Bear</option>
+            <option value="rabbit">Rabbit</option>
+            <option value="fox">Fox</option>
+          </select>
         </div>
-        <button id="renderBtn" class="primary full">● Record animated video</button>
-        <button id="generateVideoBtn" class="secondary full">✦ Request AI video scenes</button>
-        <div id="renderStatus" class="status-box">Ready when you are. Add audio for a music video with sound.</div>
-        <p class="microcopy">Browser export is WebM where supported. Use a video editor to convert it to MP4. AI scene generation is a separate optional workflow.</p>
-      </section>
-    </aside>
-  </main>
 
-  <footer><span>© AIDEL TOONS Studio</span><span>Original characters · Original stories · Big imagination</span></footer>
-  <dialog id="helpDialog"><div class="dialog-head"><h2>How AIDEL TOONS Studio works</h2><button id="closeHelp" class="quiet">✕</button></div><p>This first version includes a procedural 3D stage, three original placeholder characters, simple mouth/bounce animation, lyrics editing, audio upload and browser recording.</p><p>For AI-generated singing and cinematic video clips, connect a trusted provider workflow to the backend webhook endpoints. Never put provider API keys in this website's JavaScript or GitHub repository.</p><p>Character models and animation can be upgraded later with rigged 3D assets, facial blendshapes and phoneme-level lip-sync.</p></dialog>
-  <script type="module" src="app.js"></script>
+        <div>
+          <label class="field-label" for="customColor">Character Colour</label>
+          <input id="customColor" type="color" value="#9b72e8">
+        </div>
+      </div>
+
+      <button id="createCharacterBtn" class="secondary full">
+        + Create Character
+      </button>
+
+      <div id="customCharacterList" class="custom-list">
+        <span class="microcopy">Your characters will appear here.</span>
+      </div>
+    </section>
+
+    <section class="panel">
+      <p class="eyebrow">03 / MUSIC STUDIO</p>
+      <h2>Add Your Music</h2>
+
+      <label class="upload-box" for="audioFile">
+        <span class="upload-symbol">♫</span>
+        <b>Upload Your Song</b>
+        <small>MP3, WAV, M4A or OGG</small>
+        <input id="audioFile" type="file" accept="audio/*">
+      </label>
+
+      <div id="audioName" class="file-name">
+        No audio selected
+      </div>
+
+      <audio id="songAudio" controls></audio>
+
+      <button id="generateMusicBtn" class="secondary full">
+        ✦ Generate AI Singing Vocals
+      </button>
+
+      <p class="microcopy">
+        AI song generation requires a connected secure AI music backend.
+      </p>
+    </section>
+
+    <section class="panel">
+      <p class="eyebrow">04 / CARTOON VIDEO STUDIO</p>
+      <h2>Render Your Video</h2>
+
+      <div class="row two">
+        <div>
+          <label class="field-label" for="aspectSelect">Video Format</label>
+          <select id="aspectSelect">
+            <option value="16:9">16:9 YouTube</option>
+            <option value="9:16">9:16 YouTube Shorts</option>
+            <option value="1:1">1:1 Square</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="field-label" for="durationSelect">Duration</label>
+          <select id="durationSelect">
+            <option value="audio">Match Audio</option>
+            <option value="30">30 Seconds</option>
+            <option value="60">60 Seconds</option>
+            <option value="120">2 Minutes</option>
+          </select>
+        </div>
+      </div>
+
+      <button id="renderBtn" class="primary full">
+        ● Record & Download Cartoon
+      </button>
+
+      <button id="generateVideoBtn" class="secondary full">
+        ✦ Generate AI Video Scenes
+      </button>
+
+      <div id="renderStatus" class="status-box">
+        Your animation studio is ready.
+      </div>
+
+      <p class="microcopy">
+        Browser recording supports WebM where available. MP4 export requires
+        a compatible video encoder or server-side conversion.
+      </p>
+    </section>
+
+    <section class="panel">
+      <p class="eyebrow">05 / PROJECT GALLERY</p>
+      <h2>My Creations</h2>
+
+      <button id="saveProjectBtn" class="secondary full">
+        Save My Project
+      </button>
+
+      <div id="gallery" class="gallery">
+        No saved projects yet.
+      </div>
+    </section>
+
+    <section class="panel">
+      <p class="eyebrow">06 / AI CONNECTION</p>
+      <h2>Backend Settings</h2>
+
+      <label class="field-label" for="backendUrl">Backend URL</label>
+      <input id="backendUrl" type="url" placeholder="https://your-backend.onrender.com">
+
+      <button id="saveBackendBtn" class="secondary full">
+        Save Backend URL
+      </button>
+
+      <p class="microcopy">
+        Never put your private AI API keys inside this website.
+      </p>
+    </section>
+
+  </aside>
+</main>
+
+<footer>
+  <span>© AIDEL TOONS Studio</span>
+  <span>Original Characters · Original Stories · Big Imagination</span>
+</footer>
+
+<dialog id="helpDialog">
+  <div class="dialog-head">
+    <h2>Welcome to AIDEL TOONS</h2>
+    <button id="closeHelp" class="quiet">✕</button>
+  </div>
+
+  <p>
+    AIDEL TOONS is your cartoon animation and music video studio.
+    Create characters, add music, write lyrics and record cartoon performances.
+  </p>
+
+  <p>
+    AI-generated singing and AI video scenes require a secure backend
+    connected to an AI provider.
+  </p>
+
+  <p>
+    Video recording depends on browser support. MP4 export requires
+    additional video encoding.
+  </p>
+</dialog>
+
+<script src="app.js"></script>
 </body>
 </html>
